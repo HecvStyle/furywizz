@@ -1,3 +1,4 @@
+---
 author: furywizz
 title: CKAD练习题记录(4)
 date: 2022-04-18
@@ -6,12 +7,13 @@ math: true
 tags: ["CKA", "k8s","学习"]
 ShowToc: true
 ShowBreadCrumbs: false
+---
 
 来源：https://github.com/dgkanatsios/CKAD-exercises
 
 **part-E: Observability**
 
-这部分主要是是可观察性，也就是能及时发现pod的问题从而进行处理
+这部分主要是可观察性，也就是能及时发现pod的问题从而进行处理
 
 1. Modify the pod.yaml file so that liveness probe starts kicking in after 5 seconds whereas the interval between probes would be 5 seconds. Run it, check the probe, delete it.
 
@@ -33,7 +35,7 @@ k explain pod.spec.containers.livenessProbe
 2. Create an nginx pod (that includes port 80) with an HTTP readinessProbe on path '/' on port 80. Again, run it, check the readinessProbe, delete it
 
 ```yaml
-# 这个比较容易。可以不需要特意指定pod开发80,因为这是nginx默认是80，而且操作也是pod内部。不需要开放service。
+# 这个比较容易。可以不需要特意指定pod开放80端口,因为nginx默认是80，而且操作也是pod内部。也不需要开放service。
 # 严谨一点，还是用--port 指定下 80
 k run nginx1 --image=nginx --port=80 -oyaml --dry-run=client > ttt.yaml
    ... 
