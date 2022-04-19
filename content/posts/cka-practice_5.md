@@ -1,7 +1,7 @@
 ---
 author: furywizz
 title: CKAD练习题记录(5)
-date: 2022-04-18
+date: 2022-04-18T18:20:53+08:00
 description: CKA练习记录
 math: true
 tags: ["CKA", "k8s","学习"]
