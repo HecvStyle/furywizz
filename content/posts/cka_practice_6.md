@@ -11,9 +11,9 @@ ShowBreadCrumbs: false
 
 来源：https://github.com/dgkanatsios/CKAD-exercises
 
-这一节主要是持久化的状态处理，需要能立即容器镜像、pod的关系，以及 pod 的生命周期有一些了解。
+这一节主要是持久化的状态处理，需要能理解容器镜像、pod的关系，以及 pod 的生命周期有一些了解。
 
-放两个官网文档参考，这一部分有点没底，需要多加练习
+放两个官网文档连接参考，这一部分有点没底，需要多加练习
 
 https://kubernetes.io/zh/docs/tasks/configure-pod-container/configure-persistent-volume-storage/ 
 

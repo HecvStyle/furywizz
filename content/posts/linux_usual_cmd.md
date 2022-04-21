@@ -266,5 +266,5 @@ cat /root/anaconda-ks.cfg
 
 #### 总结
 
-命令主要是摘抄自[雨神博客](https://www.ddosi.org/linux-info/)，这里经常使用的命里，基本都设计到了，往后有其他命令，也会补充。
+命令主要是摘抄自[雨神博客](https://www.ddosi.org/linux-info/)，这里经常使用的命里，基本都涉及到了，往后有其他命令，也会补充。
 

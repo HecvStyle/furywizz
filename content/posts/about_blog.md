@@ -4,7 +4,7 @@ title:  使用Hugo+Candy搭建个人博客
 date: 2022-04-03
 description: 记录一些博客搭建过程的思考以及搭建博客的初衷
 math: true
-tags: ["学习"]
+tags: ["我"]
 ShowToc: true
 ShowBreadCrumbs: false
 ---
@@ -51,11 +51,13 @@ docker run \
 
 #### 博客主题
 
-使用[PaperMod](https://github.com/adityatelange/hugo-PaperMod/)主题，找了一圈，发现这个主题既符比较契合我个人视觉感受，然后也有个标签功能，也就没有继续花时间找了。很多时候，我们是不需要最好的，需要的是满足自己需求的，在时间花费和完美最求之间找到一个平衡点。
+使用[PaperMod](https://github.com/adityatelange/hugo-PaperMod/)主题，找了一圈，发现这个主题既符比较契合我个人视觉感受，然后也有标签功能，也就没有继续花时间找了。很多时候，我们是不需要最好的，需要的是满足自己需求的，在时间花费和完美最求之间找到一个平衡点。
 
 #### 自动部署
 
-部署上通过本地编译，然后将编译后的静态文件push到github。服务端写了一个git pull 脚本，通过crontab每分钟执行，拉取最新静态文件。因为是个人博客，对即时性要求不高。我也看了github action 和github 的webhook，感觉都有点杀鸡用牛刀了。
+~~部署上通过本地编译，然后将编译后的静态文件push到github。服务端写了一个git pull 脚本，通过crontab每分钟执行，拉取最新静态文件。因为是个人博客，对即时性要求不高。我也看了github action 和github 的webhook，感觉都有点杀鸡用牛刀了。~~
+
+之前用到了两个库，还是太麻烦了。现在服务器安装了Hugo，主动拉去代码编译。因为往后考虑要学习CI/CD，所以现在就按照传统的方式，往后来迭代。
 
 ### 0x03 总结
 
