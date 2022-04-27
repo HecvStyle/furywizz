@@ -262,6 +262,23 @@ cat /var/lib/mysql/mysql/user.MYD
 cat /root/anaconda-ks.cfg
 ```
 
+15. 比较通用的命令
+
+```shell
+# 查看本机的外网IP地址
+curl ifconfig.me
+curl ident.me
+```
+
+16. 常用的git操作
+
+```yaml
+#撤销最近一次的提交
+git reset --soft HEAD^
+# 修改提交的信息
+git commit --amend
+```
+
 
 
 #### 总结
