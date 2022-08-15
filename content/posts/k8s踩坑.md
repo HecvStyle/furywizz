@@ -1,15 +1,3 @@
----
-author: furywizz
-title: k8s填空
-date: 2022-08-15
-description: k8s一些学习记录
-math: true
-draft: false
-tags: ["k8s", "学习"]
-ShowToc: true
-ShowBreadCrumbs: false
----
-
 1. 监控程序Metric-server pod运行异常报：it doesn‘t contain any IP SANs
    
    是双向证书认证的原因，需要metrics-server容器启动参数，添加 kubelet-insecure-tls 参数。参考自https://blog.csdn.net/pop_xiaohao/article/details/120699030
