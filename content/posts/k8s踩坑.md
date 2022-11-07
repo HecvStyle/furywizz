@@ -17,3 +17,34 @@
    参考：
    
    https://stackoverflow.com/questions/46360361/invalid-x509-certificate-for-kubernetes-master
+   
+   最终还是通过reset集群，再在初始化集群时候去设置  apiserver-cert-extra-sans 参数来解决的
+
+3. k8s 通过本地访问处理
+   
+   1. 使用 kubectl port-forward 命令建立端口转发：
+      
+      ```shell
+      k -n istio-system port-forward services/kiali :20001
+      
+      # 输出，这是随机可用端口转发
+      Forwarding from 127.0.0.1:35149 -> 20001
+      Forwarding from [::1]:35149 -> 20001
+      
+      ## 也可以指定端口,20000 端口流量转到20001上
+      k -n istio-system port-forward services/kiali 20000:20001
+      
+      ```
+      
+      kiali service的开放端口是20001。 这里操作端口转发将发往 35149 端口的流量转发到20001 端口上。注意开放35149 端口。
+   
+   2.  建立本地机器到服务器的端口转发
+      
+      ```shell
+      ssh -i ~/.ssh/your_privite_key -L 35149:localhost:35149 -C -N -l root 138.2.66.15
+      
+      # 这里localhost后边的35149端口 一定是和第一步里的端口对应的。
+      # 而第一个35149则是本地监听端口，可以自行更改
+      ```
+      
+      这里就把发往本地的 35149 端口，通过流量 ssh 连接，转发到了服务器上。这样在远程服务器上，就会把流量发往 localhost:35149。而此时，服务期上也监听35149端口，并将流量转发到了20001 端口服务上。这样最终的结果就是，我在本地请求http://127.0.0.1:35149。就如同在服务上请求 localhost:20001 效果一样。这是服务期上没有浏览器，无法渲染返回值。而我本机则是通过浏览器访问，可以有UI交互。
