@@ -33,12 +33,15 @@
       
       ## 也可以指定端口,20000 端口流量转到20001上
       k -n istio-system port-forward services/kiali 20000:20001
-      
       ```
       
       kiali service的开放端口是20001。 这里操作端口转发将发往 35149 端口的流量转发到20001 端口上。注意开放35149 端口。
+      
+      ps:更清晰的处理方式
+      
+      [更新Kubernetes APIServer证书 - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1692388)
    
-   2.  建立本地机器到服务器的端口转发
+   2. 建立本地机器到服务器的端口转发
       
       ```shell
       ssh -i ~/.ssh/your_privite_key -L 35149:localhost:35149 -C -N -l root 138.2.66.15
