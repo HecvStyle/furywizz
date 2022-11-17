@@ -1,19 +1,12 @@
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
-test:
-  script:
-    - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
-    - hugo
-  except:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
 pages:
   tags:
     - blog
     - deploy
   script:
+    - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
     - hugo
   artifacts:
     paths:
