@@ -39,7 +39,7 @@ pages:
     - hugo -D
   artifacts:
     paths:
-      - site
+      - $CI_PROJECT_DIR/site
 
 deploy:
   tags:
