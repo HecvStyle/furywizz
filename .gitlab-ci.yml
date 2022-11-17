@@ -39,5 +39,5 @@ pages:
     - hugo -D
   artifacts:
     paths:
-      - public
+      - site
  
