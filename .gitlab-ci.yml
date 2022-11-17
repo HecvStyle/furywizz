@@ -1,12 +1,23 @@
-
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
+test:
+  script:
+    - hugo
+  except:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 pages:
   tags:
     - blog
     - deploy
   script:
-    - echo 
-    - "hello"
+    - hugo
+  artifacts:
+    paths:
+      - public
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  environment: production
