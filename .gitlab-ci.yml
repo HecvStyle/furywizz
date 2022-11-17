@@ -40,4 +40,11 @@ pages:
   artifacts:
     paths:
       - site
+
+deploy:
+  tags:
+    - blog
+    - deploy
+  script:
+    - ls site
  
