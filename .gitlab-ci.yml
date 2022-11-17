@@ -45,6 +45,8 @@ deploy:
   tags:
     - blog
     - deploy
+  dependencies:
+    - pages
   script:
     - ls site
  
