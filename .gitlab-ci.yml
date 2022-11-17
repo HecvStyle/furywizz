@@ -29,8 +29,8 @@ variables:
 #     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
 
 
-
-pages:
+build:
+  stage: build
   tags:
     - blog
     - deploy
@@ -39,14 +39,19 @@ pages:
     - hugo -D
   artifacts:
     paths:
-      - $CI_PROJECT_DIR/site
+      - site
+
 
 deploy:
+  stage: deploy
   tags:
     - blog
     - deploy
-  dependencies:
-    - pages
   script:
-    - ls site
+    - ls
+  dependencies:
+    - build
+
+
+
  
