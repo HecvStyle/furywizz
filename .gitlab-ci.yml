@@ -48,7 +48,7 @@ deploy:
     - blog
     - deploy
   script:
-    - ls
+    - docker ps
   dependencies:
     - build
 
