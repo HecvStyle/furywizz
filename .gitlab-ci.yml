@@ -48,6 +48,7 @@ deploy:
     - blog
     - deploy
   script:
+    - rm -rf $HOME/$USER/Caddyfile
     - chmod +x deploy.sh
     - ./deploy.sh
   dependencies:
