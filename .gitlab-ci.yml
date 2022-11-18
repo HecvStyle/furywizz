@@ -38,9 +38,9 @@ build:
     - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
     - hugo -D
   artifacts:
+    expire_in: 1 day
     paths:
       - site
-
 
 deploy:
   stage: deploy
