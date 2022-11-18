@@ -89,12 +89,12 @@ deploy-blog:
     - if: $CI_COMMIT_MESSAGE =~ /-draft$/
       when: never
 ```
-1. 分两阶段进行工作build,deploy。阶段是有固定值，不能随便写
+1. 分两阶段进行工作build,deploy，我这里使用了默认值,阶段是有固定值，也可以使用stages 全局自定义。
 2. tags指定标签，这样具有blog 和deploy的runner才会领取到任务。
-3. 在build阶段,script 指定运行shell的命令,拉去主题到仓库，然后指定编译工作
-4. artifacts是编译的产物，也就是一个文件夹，这里我在配置文件夹中，修改了输出文件夹名称，默认应该是public
-5. rules 这里指定如果提交内容包含了draft字段，这不触发流水线，在保存草稿时候避免自动部署
-6. deploy阶段需要依赖build阶段的产物，所以用了dependencies字段
+3. 在build阶段,script 指定运行shell的命令,拉去主题到仓库，然后指定编译工作。
+4. artifacts是编译的产物，也就是一个文件夹，这里我在配置文件夹中，修改了输出文件夹名称，默认应该是public。
+5. rules 这里指定如果提交内容包含了draft字段，这不触发流水线，在保存草稿时候避免自动部署。
+6. deploy阶段需要依赖build阶段的产物，所以用了dependencies字段。
 7. deploy阶段的脚本，主要就是部署博客的服务了，这里有一些小问题需要单独来讲。
 
 ##### 一些小问题
