@@ -48,6 +48,7 @@ deploy:
     - blog
     - deploy
   script:
+    - mkdir -p $HOME/blog
     - rm -rf $HOME/blog/site
     - docker rm -f hugo
     - cp -rf site $HOME/blog
