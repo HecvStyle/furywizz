@@ -1,0 +1,4 @@
+www.furywizz.xyz {
+  root * /var/www
+  file_server
+}
