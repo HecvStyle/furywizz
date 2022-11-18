@@ -2,7 +2,7 @@
 if [[ -n $(docker ps -q -f "name=^hugo$") ]];then
         echo "正在运行Hugo..."
         cp -r site $HOME/blog
-        cp Caddyfile $HOME/blog
+        cp Caddyfile $HOME/blog/Caddyfile
         docker restart hugo
 elif [[ -n $(docker ps -aq -f "name=^hugo$") ]];then
         echo "hugo 已经停止"
