@@ -1,13 +1,118 @@
 ---
-title: "Hugo_caddy_cicd"
-date: 2022-11-18T14:39:41+08:00
-draft: true
+author: furywizz
+title: "使用gitlab完成本博客的CI/CD"
+date: 2022-11-18
 description: 基于gitlab完成本博客的CICD
 math: true
 tags: ["caddy","gitlab", "hugo","CI/CD"]
 ShowToc: true
 ShowBreadCrumbs: false
+
 ---
 
-#### TODO:
+### 初衷
+一直想将自己的博客项目实现CI/CD，最开始是直接用脚本，定时拉去,后边又想着用GitHub的action来做，但最后拖拉，也就没有更进一步。       
+而正好，最近事情相对比较少，所以折腾了gitlab之后，决定简单实战一下，把我自己博客实现CI/CD。
 
+### 准备
+- 基于gitlab实现，所以先得装好gitlab
+- 我的博客是部署在一台单独服务器上，所以你得有一台可以折腾的服务器
+- (可选)域名，服务器在外网，所以不需要备案
+- 都开始用CI/CD了，默认就会简单使用 docker,shell等
+
+### 流程梳理
+1. 用markdown文件编辑文章
+2. 文章使用git仓库保存
+3. 文章作为草稿提交，如果打上指定的commit信息，则不会触发流水线，否则触发 
+4. gitlab收到用户的提交信息触发CI
+5. 通过.gitlab-ci 中配置指定的tag,来选择runner服务器运行任务
+6. 服务器在仓库运行hugo 命令，将仓库中的markdown文件编译成静态文件
+7. 将hugo编译产出的结果，复制到指定文件夹下
+8. 使用docker部署caddy作为静态网页服务
+
+### 博客框架
+博客框架使用的Hugo,主题使用PaperMod。
+```shell
+## 安装Hugo（略）
+# 初始化一个项目，名称是blog
+hugo new site blog  
+## 进入项目
+cd blog
+## 指定使用的主题
+git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+
+## 配置好主题的设置(参考项目中的说明)，不然博客运行起来看不到东西
+
+# 生成文章的骨架
+blog hugo new first_blog.md
+
+## 写上你要的内容
+
+# 写完了看看效果，预览一下
+hugo server
+```
+
+#### 项目的CI/CD 配置
+先贴上最终的配置,然后说明
+```yaml
+build-file:
+  stage: build
+  tags:
+    - blog
+    - deploy
+  script:
+    - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+    - hugo -D
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - site
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+      when: never
+
+deploy-blog:
+  stage: deploy
+  tags:
+    - blog
+    - deploy
+  script:
+    - mkdir -p $HOME/blog
+    - rm -rf $HOME/blog/site
+    - docker rm -f hugo
+    - cp -rf site $HOME/blog
+    - cp Caddyfile $HOME/blog
+    - docker run --name hugo -p 80:80 -p 443:443 -d -v ${HOME}/blog/Caddyfile:/etc/caddy/Caddyfile -v ${HOME}/blog/site:/var/www  -v ${HOME}/blog/config:/config -v ${HOME}/blog/data:/data -e TZ=Asia/Shanghai caddy
+  dependencies:
+    - build
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+      when: never
+```
+1. 分两阶段进行工作build,deploy。阶段是有固定值，不能随便写
+2. tags指定标签，这样具有blog 和deploy的runner才会领取到任务。
+3. 在build阶段,script 指定运行shell的命令,拉去主题到仓库，然后指定编译工作
+4. artifacts是编译的产物，也就是一个文件夹，这里我在配置文件夹中，修改了输出文件夹名称，默认应该是public
+5. rules 这里指定如果提交内容包含了draft字段，这不触发流水线，在保存草稿时候避免自动部署
+6. deploy阶段需要依赖build阶段的产物，所以用了dependencies字段
+7. deploy阶段的脚本，主要就是部署博客的服务了，这里有一些小问题需要单独来讲。
+
+##### 一些小问题
+1. 我的服务器注册为了gitlab的runner，并且在注册过程中打了blog，deploy两个标签
+2. 服务器上安装有Hugo和docker
+3. 运行脚本时的用户为 gitlab-runner,是在注册runner时候生成了，默认没有docker使用权限
+```yaml
+## 添加 gitlab-runner 到docker组，这样他就有运行docker的权限了
+ sudo usermod -aG docker gitlab-runner
+## 让分组生效
+sudo newgrp
+```
+4. docker运行时将容器内部的/data路径 ${HOME}/blog/data。这个文件夹下有ssl证书，避免证书被频繁申请，免费的证书有限制
+5. 本来部署那里是是否脚本的，但是在脚本中执行 `cp -rf site $HOME/blog` 后，在 `${HOME}/blog`下的site权限变成了归属root用户，
+找出后续对site的覆盖报错而中断了流水线。回头要再次验证，看是不是有误操作，步骤记错了。😳
+
+#### 总结
+1. 作为程序员，CI/CD能解放自己的双手，原本手工处理的动作，通过机器的流水线方式来实现，省时省力省心
+2. 编写CD/CD流水线经常需要一些脚本操作，所以得有一定的shell基础
+3. 我这个流水线还很粗糙，还有很大的优化空间
+4. 初期编写流水线是很费事时间，但后续却能省区很多时间。
