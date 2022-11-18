@@ -48,6 +48,7 @@ deploy:
     - blog
     - deploy
   script:
+    - chmod +x deploy.sh
     - ./deploy.sh
   dependencies:
     - build
