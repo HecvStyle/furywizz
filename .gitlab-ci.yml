@@ -50,7 +50,7 @@ deploy:
   script:
     - rm -rf $HOME/blog/site
     - docker rm -f hugo
-    - cp -rf site %HOME/blog
+    - cp -rf site $HOME/blog
     - cp Caddyfile $HOME/blog
     - docker run --name hugo -p 80:80 -p 443:443 -d -v ${HOME}/blog/Caddyfile:/etc/caddy/Caddyfile -v ${HOME}/blog/site:/var/www  -v ${HOME}/blog/config:/config -v ${HOME}/blog/data:/data -e TZ=Asia/Shanghai caddy
   dependencies:
