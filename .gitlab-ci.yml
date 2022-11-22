@@ -6,29 +6,6 @@ variables:
   HUGO_ENV: production
 
 
-# default:
-#   before_script:
-#     - apk add --update --no-cache git go
-#     - git submodule update --init --recursive
-#     - hugo mod init gitlab.com/pages/hugo
-#     - hugo mod get -u github.com/adityatelange/hugo-PaperMod
-
-# test:
-#   script:
-#     - hugo
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
-
-# pages:
-#   script:
-#     - hugo
-#   artifacts:
-#     paths:
-#       - public
-#   rules:
-#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-
-
 build:
   stage: build
   tags:
@@ -42,7 +19,7 @@ build:
     paths:
       - site
   rules:
-    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+    - if: $CI_COMMIT_MESSAGE = /-draft$/
       when: never
     - when: always
 
@@ -61,7 +38,7 @@ deploy:
   dependencies:
     - build
   rules:
-    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+    - if: $CI_COMMIT_MESSAGE = /-draft$/
       when: never
     - when: always
 
