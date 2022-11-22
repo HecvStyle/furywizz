@@ -36,14 +36,16 @@ build:
     - deploy
   script:
     - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+    - git update
     - hugo -D
   artifacts:
     expire_in: 1 day
     paths:
       - site
-  # rules:
-  #   - if: $CI_COMMIT_MESSAGE =~ /-draft$/
-  #     when: never
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+      when: never
+    - when: always
 
 deploy:
   stage: deploy
@@ -59,9 +61,10 @@ deploy:
     - docker run --name hugo -p 80:80 -p 443:443 -d -v ${HOME}/blog/Caddyfile:/etc/caddy/Caddyfile -v ${HOME}/blog/site:/var/www  -v ${HOME}/blog/config:/config -v ${HOME}/blog/data:/data -e TZ=Asia/Shanghai caddy
   dependencies:
     - build
-  # rules:
-  #   - if: $CI_COMMIT_MESSAGE =~ /-draft$/
-  #     when: never
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+      when: never
+    - when: always
 
 
 
