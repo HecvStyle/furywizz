@@ -1,3 +1,14 @@
+---
+author: furywizz
+title: "k8s折腾记录"
+date: 2022-11-22
+description:记录使用k8s中碰到的一些问题
+math: true
+tags: ["k8s","kubernetes" ]
+ShowBreadCrumbs: false
+
+---
+
 1. 监控程序Metric-server pod运行异常报：it doesn‘t contain any IP SANs
    
    是双向证书认证的原因，需要metrics-server容器启动参数，添加 kubelet-insecure-tls 参数。参考自https://blog.csdn.net/pop_xiaohao/article/details/120699030
@@ -19,6 +30,10 @@
    https://stackoverflow.com/questions/46360361/invalid-x509-certificate-for-kubernetes-master
    
    最终还是通过reset集群，再在初始化集群时候去设置  apiserver-cert-extra-sans 参数来解决的
+   
+   ps:更清晰的处理方式
+   [更新Kubernetes APIServer证书 - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1692388)
+
 
 3. k8s 通过本地访问处理
    
@@ -37,10 +52,7 @@
       
       kiali service的开放端口是20001。 这里操作端口转发将发往 35149 端口的流量转发到20001 端口上。注意开放35149 端口。
       
-      ps:更清晰的处理方式
-      
-      [更新Kubernetes APIServer证书 - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1692388)
-   
+
    2. 建立本地机器到服务器的端口转发
       
       ```shell
