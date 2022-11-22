@@ -2,9 +2,9 @@
 author: furywizz
 title: "k8s折腾记录"
 date: 2022-11-22
-description:记录使用k8s中碰到的一些问题
+description: 记录使用k8s中碰到的一些问题
 math: true
-tags: ["k8s","kubernetes" ]
+tags: ["k8s","kubernetes"]
 ShowBreadCrumbs: false
 
 ---
