@@ -88,6 +88,7 @@ deploy-blog:
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /-draft$/
       when: never
+    - when: always
 ```
 1. 分两阶段进行工作build,deploy，我这里使用了默认值,阶段是有固定值，也可以使用stages 全局自定义。
 2. tags指定标签，这样具有blog 和deploy的runner才会领取到任务。
