@@ -70,7 +70,7 @@ build-file:
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /-draft$/
       when: never
-
+    - when: always 
 deploy-blog:
   stage: deploy
   tags:
