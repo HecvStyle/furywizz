@@ -19,13 +19,11 @@ build:
     paths:
       - site
   rules:
-    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+    - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
     - when: always
 
   
-
-
 deploy:
   stage: deploy
   tags:
@@ -41,7 +39,7 @@ deploy:
   dependencies:
     - build
   rules:
-    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+    - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
     - when: always
 
