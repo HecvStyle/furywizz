@@ -36,7 +36,6 @@ build:
     - deploy
   script:
     - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
-    - git update
     - hugo -D
   artifacts:
     expire_in: 1 day
