@@ -64,7 +64,8 @@ ShowBreadCrumbs: false
       
       这里就把发往本地的 35149 端口，通过流量 ssh 连接，转发到了服务器上。这样在远程服务器上，就会把流量发往 localhost:35149。而此时，服务期上也监听35149端口，并将流量转发到了20001 端口服务上。这样最终的结果就是，我在本地请求http://127.0.0.1:35149。就如同在服务上请求 localhost:20001 效果一样。这是服务期上没有浏览器，无法渲染返回值。而我本机则是通过浏览器访问，可以有UI交互。
 #### 修改集群的默认namespace
-修改kubernetes-admin@kubernetes上下文的默认命名空间
+修改kubernetes-admin@kubernetes上下文的默认命名空间    
+
 ```kubectl config set-context kubernetes-admin@kubernetes --namespace=kube-system```
 
 参考: [使用kubectl管理kubeconfig配置文件](https://www.jianshu.com/p/3c3ac5762f40)

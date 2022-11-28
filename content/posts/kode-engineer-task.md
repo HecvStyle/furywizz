@@ -18,3 +18,9 @@ ShowBreadCrumbs: false
 sudo adduser user -s /sbin/nologin
 ```
 通过 `cat /etc/passwd` 可以看到最近添加的用户名以及相关的权限信息，大概会是这样 `bind:x:115:118::/var/cache/bind:/usr/sbin/nologin`
+
+#### 替换文本文件中的指定字符串（Linux String Substitute）
+```shell
+sed -i 's/Random/Marine/' /root/the_name.xml
+```
+使用sed 命令，替换 the_name.xml 文件中所有的Random字符串为Marine
