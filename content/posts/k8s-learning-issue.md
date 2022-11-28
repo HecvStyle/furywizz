@@ -9,11 +9,11 @@ ShowBreadCrumbs: false
 
 ---
 
-1. 监控程序Metric-server pod运行异常报：it doesn‘t contain any IP SANs
+#### 监控程序Metric-server pod运行异常报：it doesn‘t contain any IP SANs
    
    是双向证书认证的原因，需要metrics-server容器启动参数，添加 kubelet-insecure-tls 参数。参考自https://blog.csdn.net/pop_xiaohao/article/details/120699030
 
-2. 解决自己搭建的k8s 只能本机认证证书问题
+#### 解决自己搭建的k8s 只能本机认证证书问题
    
    ```shell
    rm /etc/kubernetes/pki/apiserver.*
@@ -35,7 +35,7 @@ ShowBreadCrumbs: false
    [更新Kubernetes APIServer证书 - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1692388)
 
 
-3. k8s 通过本地访问处理
+#### k8s 通过端口转发，处理集群内的内部访问服务，非NodePort的方式
    
    1. 使用 kubectl port-forward 命令建立端口转发：
       
@@ -63,3 +63,8 @@ ShowBreadCrumbs: false
       ```
       
       这里就把发往本地的 35149 端口，通过流量 ssh 连接，转发到了服务器上。这样在远程服务器上，就会把流量发往 localhost:35149。而此时，服务期上也监听35149端口，并将流量转发到了20001 端口服务上。这样最终的结果就是，我在本地请求http://127.0.0.1:35149。就如同在服务上请求 localhost:20001 效果一样。这是服务期上没有浏览器，无法渲染返回值。而我本机则是通过浏览器访问，可以有UI交互。
+#### 修改集群的默认namespace
+修改kubernetes-admin@kubernetes上下文的默认命名空间
+```kubectl config set-context kubernetes-admin@kubernetes --namespace=kube-system```
+
+参考: [使用kubectl管理kubeconfig配置文件](https://www.jianshu.com/p/3c3ac5762f40)
