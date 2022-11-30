@@ -24,3 +24,9 @@ sudo adduser user -s /sbin/nologin
 sed -i 's/Random/Marine/' /root/the_name.xml
 ```
 使用sed 命令，替换 the_name.xml 文件中所有的Random字符串为Marine
+
+#### Selinux 安装 （Selinux Installation）
+```shell
+yum install selinux-policy-targeted
+```
+SELinux 表示 Security-Enhanced Linux，是内核级别的安全模块
