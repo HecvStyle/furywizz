@@ -31,6 +31,21 @@ yum install selinux-policy-targeted
 ```
 SELinux 表示 Security-Enhanced Linux，是内核级别的安全模块
 
+#### Linux 无密码登录（Linux SSH Authentication）
+```shell
+# 简单点就一路回车，不然就看自己需要了
+ssh-keygen -t rsa -b 4096  ## 也可不需要指定长度，看需求
+
+# 这里默认是将 当前用户 .ssh/id_rsa.pub 文件拷贝到目标服务器用户的.ssh/authorized_keys 里
+ssh-copy-id  root@192.168.100.10
+
+## 如果你是自定义上边生成的密钥对，那这里copy时候使用 -i 指定公钥路径
+ssh-copy-id -i /path/xxxxx.pub root@192.168.100.10
+
+
+
+```
+
 #### 2022-12-05: Linux User Files (Linux上的用户文件)
 
 要求移动指定目录下，指定用户的文件到另一个文件夹，在移动过程中需要保持文件夹到结构.    
@@ -41,4 +56,19 @@ SELinux 表示 Security-Enhanced Linux，是内核级别的安全模块
 -m或preserve-modification-time 　不去更换文件的更改时间。
 ```shell
 find . -user kareem|cpio -pdm /blog
+```
+#### 2022-12-07: Linux run level (Linux运行级别)
+目标： 修改系统的默认级别为GUI级别
+1. Linux系统的run level 就是在启动的过程中以哪种形态呈现，有点类似与window的启动方式选项。记得好像ubuntu系统启动时候，也有选择，图形化界面或者多用化交互界面
+2. 可选的级别，0 停机 1 单用户模式 2 多用户，没有 NFS 3 完全多用户模式 4 没有用到 5 图形界面 6 重新启动 S s Single user mode
+3. 有两种方式设置
+ ```shell
+# 使用init 命令设置默认级别为多用户模式 
+init 3 
+# 使用systemctl 命令,这个命令更清晰，但是需要指定默认的级别为字符串，需要提前知道。不过终究是用得少。建议使用
+# 其他可选之 rescue.target，emergency.target，multi-user.target
+systemctl set-default graphical.target
+
+# 获取当前默认的运行级别
+systemctl get-default
 ```
