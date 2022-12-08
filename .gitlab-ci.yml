@@ -32,7 +32,7 @@ build-image:
     - echo $(docker login --username=515298386@qq.com registry.cn-hangzhou.aliyuncs.com --password=$ALI_DOCKER_PWD)
   script:
     - ls
-    - docker build registry.cn-hangzhou.aliyuncs.com/hecvstyle/blog:$CI_COMMIT_SHORT_SHA -t .
+    - docker build -t registry.cn-hangzhou.aliyuncs.com/hecvstyle/blog:$CI_COMMIT_SHORT_SHA  .
     - docker tag registry.cn-hangzhou.aliyuncs.com/hecvstyle/blog:latest
   
 deploy:
