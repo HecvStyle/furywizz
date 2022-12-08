@@ -6,14 +6,14 @@ variables:
   HUGO_ENV: production
 
 
-build-static:
+build:
   stage: build
   tags:
     - blog
     - deploy
   script:
     - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
-    - docker run --rm -it -v $(pwd):/src klakegg/hugo
+    - hugo -D
   artifacts:
     expire_in: 1 day
     paths:
@@ -23,33 +23,21 @@ build-static:
       when: never
     - when: always
 
-build-image:
-  stage: build
-  tags:
-    - blog
-    - deploy
-  before_script:
-    - echo $(docker login --username=515298386@qq.com registry.cn-hangzhou.aliyuncs.com --password=$ALI_DOCKER_PWD)
-  script:
-    - ls
-    - docker build -t registry.cn-hangzhou.aliyuncs.com/hecvstyle/blog:$CI_COMMIT_SHORT_SHA  .
-    - docker tag registry.cn-hangzhou.aliyuncs.com/hecvstyle/blog:latest
-  
+
 deploy:
   stage: deploy
   tags:
     - blog
     - deploy
   script:
-
+    - mkdir -p $HOME/blog
+    - rm -rf $HOME/blog/site
     - docker rm -f hugo
-    - docker run -d -p 80:80 -p 443:443 -p 443:443/udp \
-      -v ${HOME}/blog/data:/data \
-      -v ${HOME}/blog/config:/config \
-      registry.cn-hangzhou.aliyuncs.com/hecvstyle/blog \
-      --name hugo
-      -e TZ=Asia/Shanghai \
-      caddy file-server --domain furywizz.xyz
+    - cp -rf site $HOME/blog
+    - cp Caddyfile $HOME/blog
+    - docker run --name hugo -p 80:80 -p 443:443 -d -v ${HOME}/blog/Caddyfile:/etc/caddy/Caddyfile -v ${HOME}/blog/site:/var/www  -v ${HOME}/blog/config:/config -v ${HOME}/blog/data:/data -e TZ=Asia/Shanghai caddy
+  dependencies:
+    - build
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
