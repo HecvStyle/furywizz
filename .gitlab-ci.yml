@@ -49,8 +49,6 @@ deploy:
       --name hugo
       -e TZ=Asia/Shanghai \
       caddy file-server --domain furywizz.xyz
-  dependencies:
-    - build
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
