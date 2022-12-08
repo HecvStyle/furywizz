@@ -72,3 +72,17 @@ systemctl set-default graphical.target
 # 获取当前默认的运行级别
 systemctl get-default
 ```
+#### 2022-12-08: Create a Cron job (添加一个定时任务)
+目标：需要每个5分钟在/tmp/cron_text 文件下写入一个hello   
+这个是比较容易的，系统为centos7。唯一要注意的是用户权限，谁写入的任务，就是以对应的用户权限。我这里切换到了root
+```shell
+# 安装cronie
+sudo yum install cronie
+# 使用systemctl启动
+systemctl start crond && systemctl enable crond
+## 添加定时任务
+# 1. 打开定时任务编辑器，看交互，指定自己使用的编辑器来编辑（如果有的话）
+crontab -e
+# 2. 写入定时任务
+*/5 * * * * echo hello >> /tmp/cron_text
+```
