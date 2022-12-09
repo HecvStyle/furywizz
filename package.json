@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "caddy blog search",
+  "main": "index.js",
+  "scripts": {
+    "algolia": "atomic-algolia"
+  },
+  "author": "Gemini",
+  "license": "ISC",
+  "dependencies": {
+    "atomic-algolia": "^0.3.19"
+  }
+}
