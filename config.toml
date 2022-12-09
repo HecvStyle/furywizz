@@ -1,0 +1,132 @@
+baseurl = "https://www.Geminihub.top"
+title = "Gemini Blog"
+theme = "hugo-theme-cleanwhite"
+languageCode = "en-us"
+# Enable comments by entering your Disqus shortname
+disqusShortname = ""
+googleAnalytics = "G-342VV12714"
+preserveTaxonomyNames = true
+paginate = 5 #frontpage pagination
+hasCJKLanguage = true
+
+[outputs]
+home = ["HTML", "RSS", "Algolia"]
+
+[params]
+  header_image = "img/home-bg-jeep.jpg"
+  SEOTitle = "何巍的博客 | Gemini Blog"
+  description = "何巍,程序员 | 这里是 何巍 的博客，与你一起发现更大的世界。"
+  keyword = "Gemini, hewei, 何巍, k8s, kodecloud, 何巍的博客, Gemini Blog, 博客, 个人网站, 互联网, Web, 云原生, Istio, Kubernetes, 微服务, Microservice,Golang"
+  slogan = "不能杀死我的终将使我变更强大"
+
+  image_404 = "img/404-bg.jpg"
+  title_404 = "这里什么也没有 :("
+  omit_categories = false
+
+  # leancloud storage for page view counter
+  page_view_conter = false 
+  leancloud_app_id = ""
+  leancloud_app_key = ""
+
+  # algolia site search
+  algolia_search = true
+  algolia_appId = "ZYGEKKTQXZ"
+  algolia_indexName = "blog-search-datas"
+  algolia_apiKey = "74d5988a63685496ba6b099c1aa6cb5d"
+
+  # Sidebar settings
+  sidebar_about_description = "Software Developer, Sport Boy"
+  #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
+  sidebar_avatar = "img/gemini.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+  featured_tags = true 
+  featured_condition_size = 2 
+
+  # Baidu Analytics
+  ba_track_id = "edf0d5dc5b73e0540b41173c94a546d6"
+  
+  # We need a proxy to access Disqus api in China
+  # Follow https://github.com/zhaohuabing/disqus-php-api to set up your own disqus proxy
+  disqus_proxy = ""
+  disqus_site = ""
+
+  # Twikoo comments
+  # Follow https://twikoo.js.org/ to set up your own env_id
+  twikoo_env_id = ""
+
+  #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
+  reward = true 
+  reward_guide = "如果这篇文章对你有用,请随意打赏" 
+
+  friends = false
+  bookmarks = false
+  about_me = true
+
+  # Include any custom CSS and/or JS files, url or relative to /static folder
+  #custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]
+  #custom_js = ["js/lightbox.js", "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", "js/main.js"]
+
+  [params.social]
+  rss            = true 
+  email          = "hecvstyle@foxmail.com"
+  #facebook      = "full profile url in facebook"
+  #googleplus    = "full profile url in googleplus"
+  #twitter       = "full profile url in twitter"
+#  linkedin       = "https://www.linkedin.com/in/yourlinkedinid"
+#  stackoverflow  = "https://stackoverflow.com/users/yourstackoverflowid"
+  #instagram     = "full profile url in instagram"
+  github         = "https://github.com/HecvStyle"
+  wechat         = "img/wechat_qrcode.jpg"
+  #medium        = "full profile url in medium"
+  #slack         = "full workspace url in slack"
+  #pinterest     = "full profile url in pinterest"
+  #reddit        = "full profile url in reddit"
+  #gitlab        = "full profile url in gitlab"
+  #mastodon      = "full profile url in mastodon"
+  #keybase       = "full profile url in keybase"
+  #xing          = "https://www.xing.com/profile/yourxingid"
+  #git           = "full profile url for git user"
+  
+# [[params.friend_link]]
+# title = "Linda的博客"
+# href =  "https://zhaozhihan.com"
+#
+#  [[params.bookmark_link]]
+#  title =  "Martin Fowler"
+#  href =  "https://martinfowler.com"
+#  [[params.bookmark_link]]
+#  title = "ServiceMesher"
+#  href =  "http://www.servicemesher.com"
+#  [[params.bookmark_link]]
+#  title =  "Pxhere"
+#  href = "https://pxhere.com"
+#  [[params.bookmark_link]]
+#  title = "unsplash"
+#  href = "https://unsplash.com"
+  
+  [[params.addtional_menus]]
+  title =  "ARCHIVE"
+  href =  "/archive/"
+#  [[params.addtional_menus]]
+#  title =  "NOTES"
+#  href =  "/notes/"
+  [[params.addtional_menus]]
+  title =  "ABOUT"
+  href =  "/about/"
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
+params = ["categories", "tags"] 
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 2
+    startLevel = 1
+  [markup.highlight]
+    style = "dracula"
