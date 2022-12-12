@@ -16,18 +16,24 @@
 image: docker:20.10.5-dind
 
 stages:          # List of stages for jobs, and their order of execution
-  - build
+  - pre
+  - build-static
+  - build-image
 
-pre-build:
-  stage: build
+pre:
+  stage: pre
   tags:
    - blog   
   image: bitnami/git:latest    
   script:
-    - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+    - git clone https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite --depth=1
+  cache:
+        key: themes
+        paths:
+          - themes/
 
 build-static:
-  stage: build
+  stage: build-static
   tags:
     - blog
   image: klakegg/hugo
@@ -35,17 +41,17 @@ build-static:
     - ls -l
     - ls themes -l
   script:
-    - hugo
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - public
+    - docker run --rm -v $(pwd):/src klakegg/hugo
+  cache:
+        key: public
+        paths:
+          - public/
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
     - when: always
 
 build-image:
-  stage: build
+  stage: build-image
   script:
     - ls
