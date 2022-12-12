@@ -39,7 +39,9 @@ build-static:
   dependencies:
     - pre
   image: klakegg/hugo
-  entrypoint: [""]
+  
+  script:
+    - /bin/sh hugo
   artifacts:
     expire_in: 1 hour
     paths:
