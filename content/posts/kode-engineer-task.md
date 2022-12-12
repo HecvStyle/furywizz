@@ -86,3 +86,27 @@ crontab -e
 # 2. 写入定时任务
 */5 * * * * echo hello >> /tmp/cron_text
 ```
+
+#### 2022-12-09: Linux Collaborative Directories (文件夹权限设置)
+目标： 在指定路径下创建一个文件夹，要求root用户和属组内用户有读、写执行权限，其他用户没有权限
+```shell
+# root用户创建文件夹,-p参数可以创建多集
+sudo makedir -p /bob/data/
+
+# 改变文件夹属组,将 /bob/data 以及子文件夹修改为归属 sysops
+sudo chgrp -R sysops /bob/data/ 
+
+# 改变权限,root 和属组内用户可以执行读、写、执行操作，其他用户没有权限
+sudo chown 770  /bob/data/ 
+
+```
+
+#### 2022-12-12: MariaDB Troubleshooting (MariaDB 文件处理)
+目标：mariadb 没能启动，找出原因并让它启动起来
+首先使用 systemctl status mariadb 查看状态，的确没起来，也没有明确的错误信息，或者说我看不出来    
+然后用 journalctl -u mariadb.service 查看，也没有看懂错误
+然后没办法了，直接去社区找答案
+结论： 是因为 /var/lib 下的mysql 文件夹需要权限不对。需要使用mysql组和mysql用户运行。
+```shell
+sudo chown -R mysql:mysql /var/lib/mysql
+```
