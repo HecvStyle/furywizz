@@ -38,9 +38,11 @@ build-static:
     - blog
   dependencies:
     - pre
-  image: klakegg/hugo
+  image:
+    name: klakegg/hugo
+    entrypoint: ["/bin/sh"]
   script:
-    - /bin/sh hugo
+    - ls
   artifacts:
     expire_in: 1 hour
     paths:
