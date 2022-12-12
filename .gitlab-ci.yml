@@ -38,6 +38,7 @@ build-static:
     - blog
   dependencies:
     - pre
+  image: klakegg/hugo
   script:
     - docker run --rm -v $(pwd):/src klakegg/hugo
   artifacts:
