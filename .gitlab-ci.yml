@@ -32,7 +32,7 @@ build-static:
   artifacts:
     expire_in: 1 day
     paths:
-      - site
+      - public
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
