@@ -27,21 +27,23 @@ pre:
   image: bitnami/git:latest    
   script:
     - git clone https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite --depth=1
-  cache:
-        key: themes
-        paths:
-          - themes/
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - themes
 
 build-static:
   stage: build-static
   tags:
     - blog
+  dependencies:
+    - pre
   script:
     - docker run --rm -v $(pwd):/src klakegg/hugo
-  cache:
-        key: public
-        paths:
-          - public/
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - public
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
