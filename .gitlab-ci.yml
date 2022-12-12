@@ -40,6 +40,8 @@ build-static:
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
+  before_script:
+    - ls -l
   script: >
     docker run --rm 
     -e NPM_CONFIG_LOGLEVEL=info 
