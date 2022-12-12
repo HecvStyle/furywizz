@@ -39,7 +39,6 @@ build-static:
   dependencies:
     - pre
   image: klakegg/hugo
-  
   script:
     - /bin/sh hugo
   artifacts:
