@@ -21,7 +21,8 @@ stages:          # List of stages for jobs, and their order of execution
 pre-build:
   stage: build
   tags:
-   - blog       
+   - blog   
+  image: bitnami/git:latest    
   script:
     - git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
 
