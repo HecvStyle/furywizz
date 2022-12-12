@@ -26,9 +26,8 @@ build-static:
     - blog
     - deploy
   before_script:
-    -  sudo chown -R gitlab-runner:gitlab-runner .
+    -  ls -l
   script:
-    - rm -rf public
     - git clone https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite --depth=1
     - docker run --rm -v $(pwd):/src klakegg/hugo
     - ls -l
