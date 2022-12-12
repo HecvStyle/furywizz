@@ -39,8 +39,8 @@ build-static:
   dependencies:
     - pre
   image:
-    name: klakegg/hugo
-    entrypoint: ["/bin/sh"]
+    name: klakegg/hugo:ext-alpine
+    entrypoint: ["/bin/sh", "-c"] 
   script:
     - ls
   artifacts:
