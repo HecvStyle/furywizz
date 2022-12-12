@@ -27,7 +27,8 @@ build-static:
     - deploy
   script:
     - git clone https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite --depth=1
-    - docker run --rm -it -v $(pwd):/src klakegg/hugo
+    - docker run --rm -v $(pwd):/src klakegg/hugo
+    - ls -l
   artifacts:
     expire_in: 1 day
     paths:
