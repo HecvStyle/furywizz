@@ -36,10 +36,6 @@ build-static:
   stage: build-static
   tags:
     - blog
-  image: klakegg/hugo
-  before_script:
-    - ls -l
-    - ls themes -l
   script:
     - docker run --rm -v $(pwd):/src klakegg/hugo
   cache:
