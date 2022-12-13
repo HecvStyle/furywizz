@@ -114,3 +114,14 @@ sudo chown 770  /bob/data/
 ```shell
 sudo chown -R mysql:mysql /var/lib/mysql
 ```
+
+#### 2022-12-13: linux without home (创建一个没有用户目录的Linux 服务用户)
+```shell
+# 代码很简单
+adduser -M john 
+```
+另外一些要注意的：
+1. -M 表示不要创建用户home文件夹，我服务器上默认是会创建同名文件夹的
+2. -s 可以指定shell 比如 `-s /usr/sbin/nologin`
+3. -d 可以指定具体位置的主目录 `-d /opt/hello`
+其他具体的，可以多多查看 -h 命令
