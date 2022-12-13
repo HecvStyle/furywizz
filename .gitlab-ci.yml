@@ -79,10 +79,10 @@ build-image:
   before_script:
     - docker login -u 515298386@qq.com -p "$ALI_DOCKER_PWD" registry.cn-hangzhou.aliyuncs.com
   script:
-    - docker build -t registry.cn-hangzhou.aliyuncs.com/hecvstyle:$CI_COMMIT_SHORT_SHA .
-    - docker tag registry.cn-hangzhou.aliyuncs.com/hecvstyle:$CI_COMMIT_SHORT_SHA registry.cn-hangzhou.aliyuncs.com/hecvstyle:latest
-    - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle:latest
-    - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle:$CI_COMMIT_SHORT_SHA
+    - docker build -t registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:$CI_COMMIT_SHORT_SHA .
+    - docker tag registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:$CI_COMMIT_SHORT_SHA registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
+    - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
+    - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:$CI_COMMIT_SHORT_SHA
     - docker rmi $(docker images -q -f dangling=true)
 
 #depyloy:
