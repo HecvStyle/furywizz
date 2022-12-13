@@ -18,6 +18,7 @@ image: docker:20.10.5-dind
 stages:          # List of stages for jobs, and their order of execution
   - pre
   - build-static
+  - build-agolia
 
 pre:
   stage: pre
@@ -51,20 +52,16 @@ build-static:
       when: never
     - when: always
 
-#build-agolia:
-#  stage: build-agolia
-#  tags:
-#   - blog 
-#  dependencies:
-#    - build-static
-#  image: node
-#  script: >
-#    docker run --rm 
-#    -e NPM_CONFIG_LOGLEVEL=info 
-#    -e ALGOLIA_APP_ID=ZYGEKKTQXZ 
-#    -e ALGOLIA_ADMIN_KEY=b88872883624f60c82f5507097a946ab 
-#    -e ALGOLIA_INDEX_NAME=blog-search-datas 
-#    -e ALGOLIA_INDEX_FILE=./public/algolia.json 
-#    -v $(pwd):/gemini 
-#    node  sh -c 'cd gemini&&npm install && npm run algolia'
+build-agolia:
+  stage: build-agolia
+  tags:
+   - blog 
+  dependencies:
+    - build-static
+  image: node
+  script: 
+    - ls
+    - cd gemini
+    - npm install
+    - npm run algolia
 
