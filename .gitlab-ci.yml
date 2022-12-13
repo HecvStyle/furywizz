@@ -14,7 +14,8 @@
 # To contribute improvements to CI/CD templates, please follow the Development guide at:
 
 image: docker:20.10.5-dind
-
+stages:
+  - depyloy
 
 
 depyloy:
