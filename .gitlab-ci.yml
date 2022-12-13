@@ -74,6 +74,7 @@ build-image:
   tags:
     - blog
   dependencies:
+    - build-static
     - build-agolia
   before_script:
     - docker login -u 515298386@qq.com -p "$ALI_DOCKER_PWD" registry.cn-hangzhou.aliyuncs.com
