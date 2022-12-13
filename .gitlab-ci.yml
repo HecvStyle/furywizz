@@ -41,6 +41,7 @@ build-static:
   script:
     - hugo
     - ls
+    - ls themes
   artifacts:
     expire_in: 1 hour
     paths:
@@ -49,4 +50,21 @@ build-static:
     - if: $CI_COMMIT_MESSAGE =~ /draft/
       when: never
     - when: always
+
+#build-agolia:
+#  stage: build-agolia
+#  tags:
+#   - blog 
+#  dependencies:
+#    - build-static
+#  image: node
+#  script: >
+#    docker run --rm 
+#    -e NPM_CONFIG_LOGLEVEL=info 
+#    -e ALGOLIA_APP_ID=ZYGEKKTQXZ 
+#    -e ALGOLIA_ADMIN_KEY=b88872883624f60c82f5507097a946ab 
+#    -e ALGOLIA_INDEX_NAME=blog-search-datas 
+#    -e ALGOLIA_INDEX_FILE=./public/algolia.json 
+#    -v $(pwd):/gemini 
+#    node  sh -c 'cd gemini&&npm install && npm run algolia'
 
