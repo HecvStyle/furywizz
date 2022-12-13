@@ -60,8 +60,10 @@ build-agolia:
     - build-static
   image: node
   script: 
-    - ls
-    - cd gemini
+    - export ALGOLIA_APP_ID=$ALGOLIA_APP_ID 
+    - export ALGOLIA_ADMIN_KEY=$ALGOLIA_ADMIN_KEY 
+    - export ALGOLIA_INDEX_NAME=$ALGOLIA_INDEX_NAME 
+    - export ALGOLIA_INDEX_FILE=$ALGOLIA_INDEX_FILE 
     - npm install
     - npm run algolia
 
