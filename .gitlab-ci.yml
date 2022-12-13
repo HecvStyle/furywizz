@@ -71,7 +71,7 @@ build-image:
   stage: build-image
   tags:
     - blog
-  dependencies:
-    - build-agolia
+#  dependencies:
+#    - build-agolia
   script:
     - docker ps
