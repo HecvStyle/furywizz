@@ -16,62 +16,82 @@
 image: docker:20.10.5-dind
 
 stages:          # List of stages for jobs, and their order of execution
-#  - pre
-#  - build-static
-#  - build-agolia
+  - pre
+  - build-static
+  - build-agolia
   - build-image
+  - depyloy
 
-#pre:
-#  stage: pre
-#  tags:
-#   - blog   
-#  image: bitnami/git:latest    
-#  script:
-#    - git clone https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite --depth=1
-#  artifacts:
-#    expire_in: 1 hour
-#    paths:
-#      - themes
-#
-#build-static:
-#  stage: build-static
-#  tags:
-#    - blog
-#  dependencies:
-#    - pre
-#  image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
-#  script:
-#    - hugo
-#    - ls
-#    - ls themes
-#  artifacts:
-#    expire_in: 1 hour
-#    paths:
-#      - public
-#  rules:
-#    - if: $CI_COMMIT_MESSAGE =~ /draft/
-#      when: never
-#    - when: always
-#
-#build-agolia:
-#  stage: build-agolia
-#  tags:
-#   - blog 
-#  dependencies:
-#    - build-static
-#  image: node
-#  script: 
-#    - export ALGOLIA_APP_ID=$ALGOLIA_APP_ID 
-#    - export ALGOLIA_ADMIN_KEY=$ALGOLIA_ADMIN_KEY 
-#    - export ALGOLIA_INDEX_NAME=$ALGOLIA_INDEX_NAME 
-#    - export ALGOLIA_INDEX_FILE=$ALGOLIA_INDEX_FILE 
-#    - npm install
-#    - npm run algolia
+pre:
+  stage: pre
+  tags:
+   - blog   
+  image: bitnami/git:latest    
+  script:
+    - git clone https://github.com/zhaohuabing/hugo-theme-cleanwhite.git themes/hugo-theme-cleanwhite --depth=1
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - themes
+
+build-static:
+  stage: build-static
+  tags:
+    - blog
+  dependencies:
+    - pre
+  image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
+  script:
+    - hugo
+    - ls
+    - ls themes
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /draft/
+      when: never
+    - when: always
+
+build-agolia:
+  stage: build-agolia
+  tags:
+   - blog 
+  dependencies:
+    - build-static
+  image: node:alpine
+  script: 
+    - export ALGOLIA_APP_ID=$ALGOLIA_APP_ID 
+    - export ALGOLIA_ADMIN_KEY=$ALGOLIA_ADMIN_KEY 
+    - export ALGOLIA_INDEX_NAME=$ALGOLIA_INDEX_NAME 
+    - export ALGOLIA_INDEX_FILE=$ALGOLIA_INDEX_FILE 
+    - npm install
+    - npm run algolia
+
 build-image:
   stage: build-image
   tags:
     - blog
-#  dependencies:
-#    - build-agolia
+  dependencies:
+    - build-agolia
+  before_script:
+    - docker login -u 515298386@qq.com -p "$ALI_DOCKER_PWD" registry.cn-hangzhou.aliyuncs.com
   script:
-    - docker ps
+    - docker build -t registry.cn-hangzhou.aliyuncs.com/hecvstyle:$CI_COMMIT_SHORT_SHA .
+    - docker tag registry.cn-hangzhou.aliyuncs.com/hecvstyle:$CI_COMMIT_SHORT_SHA registry.cn-hangzhou.aliyuncs.com/hecvstyle:latest
+    - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle:latest
+    - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle:$CI_COMMIT_SHORT_SHA
+    - docker rmi $(docker images -q -f dangling=true)
+
+#depyloy:
+#  stage: depyloy
+#  tags:
+#    - blog
+#  dependencies:
+#    - build-image
+#  script: >
+#    docker run -d -p 80:80 -p 443:443 -p 443:443/udp
+#    -v $HOME/gemini/blog/caddy_data:/data
+#    -v ${HOME}/gemini/caddy_config:/config
+#    gemini-blog --domain gemini.top
