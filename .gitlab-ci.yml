@@ -39,6 +39,9 @@ build-static:
     - blog
   dependencies:
     - pre
+  only:
+    changes:
+      - .
   image:
     name: klakegg/hugo
   artifacts:
