@@ -40,11 +40,7 @@ build-static:
   dependencies:
     - pre
   image:
-    name: klakegg/hugo:ext-alpine
-    entrypoint: ["/bin/sh", "-c", hugo] 
-  script:
-    - ls /themes
-    - ls
+    name: klakegg/hugo
   artifacts:
     expire_in: 1 hour
     paths:
