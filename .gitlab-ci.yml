@@ -14,6 +14,7 @@
 # To contribute improvements to CI/CD templates, please follow the Development guide at:
 
 image: docker:20.10.5-dind
+hugo_img: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
 
 stages:          # List of stages for jobs, and their order of execution
   - pre
@@ -39,8 +40,7 @@ build-static:
     - blog
   dependencies:
     - pre
-  image:
-    image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
+  image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
   script:
     - hugo
   artifacts:
