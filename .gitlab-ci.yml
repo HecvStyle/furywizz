@@ -48,10 +48,14 @@ build-static:
     expire_in: 1 hour
     paths:
       - public
-  rules:
-    - if: $CI_COMMIT_MESSAGE =~ /draft/
-      when: never
-    - when: always
+#  rules:
+#    - if: $CI_COMMIT_MESSAGE =~ /draft/
+#      when: never
+#    - when: always
+  only:
+    changes:
+      - /content/*
+      - config.toml
 
 build-agolia:
   stage: build-agolia
@@ -67,6 +71,10 @@ build-agolia:
     - export ALGOLIA_INDEX_FILE=$ALGOLIA_INDEX_FILE 
     - npm install
     - npm run algolia
+  only:
+    changes:
+      - /content/*
+      - config.toml
 
 build-image:
   stage: build-image
@@ -83,7 +91,10 @@ build-image:
     - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
     - docker push registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:$CI_COMMIT_SHORT_SHA
     - docker rmi registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:$CI_COMMIT_SHORT_SHA
-
+  only:
+    changes:
+      - /content/*
+      - config.toml
 
 depyloy:
   stage: depyloy
@@ -98,3 +109,7 @@ depyloy:
    -v ${HOME}/gemini/caddy_config:/config
    --name gemini-blog registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
    caddy file-server --domain www.geminihub.top
+  only:
+    changes:
+      - /content/*
+      - config.toml
