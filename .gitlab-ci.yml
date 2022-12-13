@@ -39,11 +39,10 @@ build-static:
     - blog
   dependencies:
     - pre
-  only:
-    changes:
-      - .
   image:
     name: klakegg/hugo
+  script:
+    - ls
   artifacts:
     expire_in: 1 hour
     paths:
