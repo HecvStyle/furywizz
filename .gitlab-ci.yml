@@ -86,10 +86,12 @@ build-image:
 
 
 depyloy:
- stage: depyloy
- tags:
-   - blog
- script: >
+  stage: depyloy
+  tags:
+    - blog
+  before_script:
+    - docker login -u 515298386@qq.com -p "$ALI_DOCKER_PWD" registry.cn-hangzhou.aliyuncs.com
+  script: >
    docker run -d -p 80:80 -p 443:443 -p 443:443/udp
    -v $HOME/gemini/blog/caddy_data:/data
    -v ${HOME}/gemini/caddy_config:/config
