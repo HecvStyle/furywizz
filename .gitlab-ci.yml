@@ -91,7 +91,7 @@ depyloy:
     - blog
   before_script:
     - docker login -u 515298386@qq.com -p "$ALI_DOCKER_PWD" registry.cn-hangzhou.aliyuncs.com
-    - docker rm gemini-blog || true
+    - docker rm gemini-blog -f || true
   script: >
    docker run -d -p 80:80 -p 443:443 -p 443:443/udp
    -v $HOME/gemini/blog/caddy_data:/data
