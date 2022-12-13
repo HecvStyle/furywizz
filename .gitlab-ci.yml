@@ -26,5 +26,5 @@ depyloy:
    docker run -d -p 80:80 -p 443:443 -p 443:443/udp
    -v $HOME/gemini/blog/caddy_data:/data
    -v ${HOME}/gemini/caddy_config:/config
-   --name gemini-blog registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest 
-   --domain gemini.top
+   --name gemini-blog registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
+   caddy file-server --domain gemini.top
