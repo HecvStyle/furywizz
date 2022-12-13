@@ -40,9 +40,9 @@ build-static:
   dependencies:
     - pre
   image:
-    name: klakegg/hugo
+    image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
   script:
-    - ls
+    - hugo
   artifacts:
     expire_in: 1 hour
     paths:
