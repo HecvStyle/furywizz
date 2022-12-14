@@ -125,3 +125,10 @@ adduser -M john
 2. -s 可以指定shell 比如 `-s /usr/sbin/nologin`
 3. -d 可以指定具体位置的主目录 `-d /opt/hello`
 其他具体的，可以多多查看 -h 命令
+
+#### 2022-12-14: DNS trouble （DNS 解析问题）
+目标： 服务器无法解析域名，所以需要添加Google的dns域名解析服务器
+```shell
+# 就是需要在 /etc/resolv.conf 文件添加一个dns服务器地址
+echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+```
