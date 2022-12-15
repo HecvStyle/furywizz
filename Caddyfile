@@ -1,0 +1,7 @@
+geminihub.top {
+  file_server
+  handle_errors {
+    rewrite * /404.html
+    file_server
+  }
+}
