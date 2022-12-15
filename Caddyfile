@@ -1,4 +1,4 @@
-geminihub.top {
+www.geminihub.top {
   file_server
   root * /usr/share/caddy
   handle_errors {
