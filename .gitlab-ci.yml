@@ -19,7 +19,7 @@ stages:          # List of stages for jobs, and their order of execution
   - build-static
   - build-agolia
   - build-image
-  - depyloy
+  - deploy
 
 pre:
   stage: pre
@@ -93,17 +93,18 @@ build-image:
      when: never
    - when: always
 
-depyloy:
-  stage: depyloy
+deploy:
+  stage: deploy
   tags:
     - blog
   before_script:
     - docker login -u 515298386@qq.com -p "$ALI_DOCKER_PWD" registry.cn-hangzhou.aliyuncs.com
     - docker rm gemini-blog -f || true
+    - echo ${HOME}
   script: >
    docker run -d -p 80:80 -p 443:443 -p 443:443/udp
-   -v $HOME/gemini/blog/caddy_data:/data
-   -v ${HOME}/gemini/caddy_config:/config
+   -v ${HOME}/gemini/blog/caddy_data:/data
+   -v ${HOME}/gemini/blog/caddy_config:/config
    --name gemini-blog registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
    caddy run
   rules:
