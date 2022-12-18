@@ -132,3 +132,16 @@ adduser -M john
 # 就是需要在 /etc/resolv.conf 文件添加一个dns服务器地址
 echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 ```
+
+#### 2022-12-18:Linux String Substitute (sed)（使用sed 命令解决字符串替换问题）
+目标：
+1. 在指定文件中将包含有 'following'字符串的所有行删除，并将新的结果保存到另外一个文件
+2. 在指定文件中将所有 'and' 字符串替换为 'or' 字符串，并且将新的结果保存到另外一个文件中  
+问题还是比较简单，主要是sed命令的使用，我平时用的少，所有也都找的答案
+```shell
+# 1 删除包含字符串的行，-e 应该是指定编辑，/d 这部分是删除的意思
+sed -e '/following/d' /home/bsd.txt > /home/bsd_delete.txt
+
+# 2 替换字符串，使用 /s 模式，然后需要全局 需要 /g
+sed -e 's/and/or/g' /home/bsd.txt > /home/bsd_replace.txt
+```
