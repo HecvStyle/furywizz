@@ -106,7 +106,6 @@ deploy:
    -v ${HOME}/gemini/blog/caddy_data:/data
    -v ${HOME}/gemini/blog/caddy_config:/config
    --name gemini-blog registry.cn-hangzhou.aliyuncs.com/hecvstyle/gemini-blog:latest
-    caddy file-server --domain www.geminihub.top
 
   rules:
    - if: $CI_COMMIT_MESSAGE =~ /draft/
