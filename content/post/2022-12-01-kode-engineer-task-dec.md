@@ -145,3 +145,9 @@ sed -e '/following/d' /home/bsd.txt > /home/bsd_delete.txt
 # 2 替换字符串，使用 /s 模式，然后需要全局 需要 /g
 sed -e 's/and/or/g' /home/bsd.txt > /home/bsd_replace.txt
 ```
+
+#### 2022-12-18: Linux Banner (linux 得登录banner 设置)
+目标： 在指定得机器中，设置ssh 登录的banner
+这对我来说也是盲点，所以找了下资料
+1. 通过 /etc/ssh/sshd_config 中设置 banner 的路径。 但是这个方法对任务而言是不对的，但我也没法确定这种方式是不是对的。同时也说明还有其他的方式。
+2. 修改 /etc/motd 文件内容为需要的banner信息。这种方式是被任务接受的，所以任务完成。
