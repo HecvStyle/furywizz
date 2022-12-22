@@ -159,3 +159,13 @@ sed -e 's/and/or/g' /home/bsd.txt > /home/bsd_replace.txt
 useradd -e 2022-03-12 siva
 ```
 
+#### 2022-12-22: Linux Remote Copy (Linux 远程文件拷贝)
+目标： 将本地文件拷贝到远程服务指定目录下
+```shell
+## 将/tmp/xxxx.txt 文件拷贝到stapp01 服务器到 /home/data 目录下。 这里会要求输入密码
+scp /tmp/xxxx.txt tony@stapp01:/home/data
+
+## 另外如果使用密钥，则增加 -i ssh/path 参数
+scp -i ssh/path  /tmp/xxxx.txt tony@stapp01:/home/data
+```
+
