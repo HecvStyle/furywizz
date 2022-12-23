@@ -166,6 +166,15 @@ useradd -e 2022-03-12 siva
 scp /tmp/xxxx.txt tony@stapp01:/home/data
 
 ## 另外如果使用密钥，则增加 -i ssh/path 参数
-scp -i ssh/path  /tmp/xxxx.txt tony@stapp01:/home/data
+scp -i /key/path  /tmp/xxxx.txt tony@stapp01:/home/data
+```
+#### 22022-12-23: Disable Root Login (禁止使用root用户登录)
+目标：就是不能使用root用户通过ssh 登录系统
+```shell
+# sshd 配置文件路径为 /etc/ssh/sshd_config。注意需要切换到root用户
+vi /etc/ssh/sshd_config
+# 找到 PermitRootLogin 对应的行，取消注释，然后替换默认的yes 为no
+# 重要点：一定要重启sshd 服务，不然无法生效。完成任务时候，因为没有重启sshd,所以没有通过，后面重启服务之后就通过了
+systemctl restart sshd
 ```
 
