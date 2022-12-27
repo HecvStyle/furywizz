@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37377885-61b5-4ad5-a36f-5e38648437fa" name="变更" comment="[update] 更新赞赏图片">
-      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-10.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-100.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-50.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-100.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-50.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +19,7 @@
         <entry key="$PROJECT_DIR$" value="github" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/hugo-theme-cleanwhite" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -90,7 +79,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
