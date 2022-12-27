@@ -252,3 +252,10 @@ sudo chmod +x backup.sh
 ssh-keygen
 ssh-copy-id 
 ```
+
+#### 2022-12-26: Install a package (Linux 上安装软件) Rank: 1013
+目标： 需要在3太服务器上安装samba 包
+```shell
+# 首先已经确定是centos7,所以使用yum进行包安装
+sudo yum install -y samba
+```
