@@ -13,14 +13,14 @@ hasCJKLanguage = true
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "img/home-bg-jeep.jpg"
+  header_image = "img/home-bg-kali.jpg"
   SEOTitle = "何巍的博客 | Gemini Blog"
   description = "何巍,程序员 | 这里是 何巍 的博客，与你一起发现更大的世界。"
   keyword = "Gemini, hewei, 何巍, k8s, kodecloud, 何巍的博客, Gemini Blog, 博客, 个人网站, 互联网, Web, 云原生, Istio, Kubernetes, 微服务, Microservice,Golang"
   slogan = "不能杀死我的终将使我变更强大"
 
   image_404 = "img/404-bg.jpg"
-  title_404 = "这里什么也没有 :("
+  title_404 = "翻遍了地球也没找到你想要的东西 :("
   omit_categories = false
 
   # leancloud storage for page view counter
