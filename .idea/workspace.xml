@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="37377885-61b5-4ad5-a36f-5e38648437fa" name="变更" comment="[update] 更新赞赏图片">
+      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-10.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-100.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-5.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/alipay-50.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-100.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reward/wechat-50.jpg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/go1.19.1" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="github" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/hugo-theme-cleanwhite" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="kubernetes-admin@kubernetes" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectId" id="2IflSoAHfmlDSKhVBElRMPzR3sp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/maoyun/Documents/gemini/themes/hugo-theme-cleanwhite/static/img/reward",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/themes/hugo-theme-cleanwhite/static/img/reward" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/public/img/reward" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/img" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".gitlab-ci.yml" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成基本改造" />
+    <MESSAGE value="修改readme 文件" />
+    <MESSAGE value="[update] 更新任务记录" />
+    <MESSAGE value="[update] 添加dockerfile" />
+    <MESSAGE value="[update] 添加新任务记录" />
+    <MESSAGE value="[update] 添加新任务记录- dns trouble" />
+    <MESSAGE value="[update] 修改配置" />
+    <MESSAGE value="[update] new task" />
+    <MESSAGE value="[update] 关于我部分的内容修改" />
+    <MESSAGE value="[update] 添加新任务" />
+    <MESSAGE value="[update] 更新赞赏图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] 更新赞赏图片" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
