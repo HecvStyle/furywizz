@@ -254,8 +254,23 @@ ssh-copy-id
 ```
 
 #### 2022-12-26: Install a package (Linux 上安装软件) Rank: 1013
-目标： 需要在3太服务器上安装samba 包
+目标： 需要在3台服务器上安装samba 包
 ```shell
 # 首先已经确定是centos7,所以使用yum进行包安装
 sudo yum install -y samba
 ```
+
+#### 2022-12-28: Application Security (应用安全) Rank: 1013
+目标：需要在备份服务器上，nginx使用的8091端口允许访问，以及禁止Apache使用的3001端口的外部访问,并永久有效
+```shell
+# 任务重有要求用到iptables
+# 开放8091 端口
+iptables -A INPUT -p tcp --dport 8091 -j ACCEPT
+
+# 禁止3001 端口
+iptables -A INPUT -p tcp --dport 3001 -j REJECT
+
+# 以上设置的规则在服务器重启后会丢失，所以需要写入iptables 规则文件
+service iptables save
+```
+PS: 运维同事说工作中用iptables 会比较少，对于centos，多数时候会直接使用firewalld 防火墙来解决这些问题
