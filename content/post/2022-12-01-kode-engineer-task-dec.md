@@ -263,7 +263,7 @@ sudo yum install -y samba
 #### 2022-12-28: Application Security (应用安全) Rank: 1013
 目标：需要在备份服务器上，nginx使用的8091端口允许访问，以及禁止Apache使用的3001端口的外部访问,并永久有效
 ```shell
-# 任务重有要求用到iptables
+# 任务中有要求用到iptables
 # 开放8091 端口
 iptables -A INPUT -p tcp --dport 8091 -j ACCEPT
 
