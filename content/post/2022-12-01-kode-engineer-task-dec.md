@@ -274,3 +274,23 @@ iptables -A INPUT -p tcp --dport 3001 -j REJECT
 service iptables save
 ```
 PS: 运维同事说工作中用iptables 会比较少，对于centos，多数时候会直接使用firewalld 防火墙来解决这些问题
+
+#### 2022-12-29: Linux LogRotate (Linux 滚动日志) Rank:973
+目标：安装httpd 应用，并对httpd的日志做滚动处理，按月分割，并保留3个滚动日志。使用logrotate工具
+```shell
+# 先安装httpd 包
+yum install -y httpd
+
+# 安装完后，查看/etc/logrotate.d 文件夹下有没有对httpd 滚动日志的配置
+ls -l /etc/logrotate.d
+
+# 如果有，那就编辑该配置文件，然后修改为任务要求。要修改的主要为两个参数，频率为monthly,滚动日志保留个数为 3
+xxxxxxx{
+  monthly
+  rotate 7
+  .....
+}
+# 修改完后，以防万一，重启httpd 服务
+systemctl restart httpd
+```
+这个任务我是通过搜索才知道的，属于只是盲区。参考了[这里](https://zhuanlan.zhihu.com/p/24880144)
