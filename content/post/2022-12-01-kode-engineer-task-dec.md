@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Kode Engineer 12月任务记录 （持续...）"
+title:      "Kode Engineer 12月任务记录 （12完结）"
 subtitle:   "记录12月 kode Engineer任务"
 date:       2022-12-01
 author:     "Gemini"
