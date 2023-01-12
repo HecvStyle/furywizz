@@ -294,3 +294,45 @@ xxxxxxx{
 systemctl restart httpd
 ```
 这个任务我是通过搜索才知道的，属于只是盲区。参考了[这里](https://zhuanlan.zhihu.com/p/24880144)
+
+####  2022-12-30: Apache 服务器中的重新定向（Apache Redirects）
+目标：1. 配置apache服务的监听端口 2. 需要指定地址重定向到带www的地址 3. 将指定路径 /blog 重定向到 /new 路径
+```shell
+#apache 服务依然不太了解，所以还是参考了外部答案
+# 修改配置文件中的端口，应该是 `Listen` 字段 
+vi /etc/httpd/conf/httpd.conf
+
+# 重定向问题需要建立一个新文件
+vi /etc/httpd/conf.d/main.conf
+# 内容如下。能看懂，但正要配置，还得找官文
+<VirtualHost *:8083>
+        ServerName stapp02.stratos.xfusioncorp.com
+        Redirect 301 / http://www.stapp02.stratos.xfusioncorp.com:8083/
+</VirtualHost>
+
+<VirtualHost *:8083>
+    ServerName www.stapp02.stratos.xfusioncorp.com:8083/blog/
+    Redirect 302 /blog/ http://www.stapp02.stratos.xfusioncorp.com:8083/news/
+    </VirtualHost>
+```
+
+
+#### 2022-12-31: 配置本地安装包（Configure Local Yum repos）
+目标：在配置yum，让其在安装时候，从本指定路径下获取安装包来安装
+```shell
+# 先看看服务器原本有哪些源
+yum repolist
+# 去到源文件配置目录,可以看到文件名和上一步操作的结果有相关性
+cd /etc/yum.repos.d
+# 复制一份相同的到，在修改内容如下：baseurl这里指定为本地路径，使用file://的scheme
+ [local_yum]
+            name=local_yum
+            baseurl=file:///packages/downloaded_rpms/
+            enabled = 1
+            gpgcheck = 0
+            
+# 将配置的源添加进来
+yum clear all
+# 再次查看源列表
+yum repolist
+```
