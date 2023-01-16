@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37377885-61b5-4ad5-a36f-5e38648437fa" name="变更" comment="[update] 更新任务">
+    <list default="true" id="37377885-61b5-4ad5-a36f-5e38648437fa" name="变更" comment="[update] 更新一批任务记录">
+      <change afterPath="$PROJECT_DIR$/content/post/2023-01-16-sre-book-reading-1.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/post/2022-12-01-kode-engineer-task-dec.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/post/2022-12-01-kode-engineer-task-dec.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/post/2023-01-01-kode-engineer-task-dec.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/post/2023-01-01-kode-engineer-task-dec.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +51,7 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/maoyun/Documents/gemini/static/img",
+    "last_opened_file_path": "/Users/maoyun/Documents/gemini/content/post",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -60,6 +60,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/content/post" />
       <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/themes/hugo-theme-cleanwhite/static/img/reward" />
       <recent name="$PROJECT_DIR$/static" />
@@ -116,7 +117,8 @@
     <MESSAGE value="[update] 更新赞赏图片" />
     <MESSAGE value="[update] 更新配置和配图" />
     <MESSAGE value="[update] 更新任务" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update] 更新任务" />
+    <MESSAGE value="[update] 更新一批任务记录" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] 更新一批任务记录" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

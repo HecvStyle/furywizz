@@ -91,4 +91,24 @@ visudo
 # 可以参考其中的root 对配置，直接复制一行，然后修改用户名
 javed    ALL=(ALL)   NOPASSWD:ALL
 ```
+#### 2023-01-16: 安装和配置Tomcat 服务(Install and Configure Tomcat Server) rank: 477
+目标： 安装tomcat服务器，开放指定端口，并且部署指定war包服务
+```shell
+# 首先肯定是安装服务，并建立系统服务
+yum install tomcat -y
+systemctl start tomcat && systemctl enable tomcat
+# 如果需要，查看下服务状态
+systemctl status tomcat
 
+# 配置tomcat服务端口,修改Connector 标签里的端口 8080 -> 3004
+vi /etc/tomcat/server.xml
+# 重启tomcat服务
+systemctl restart tomcat 
+
+#修改文件权限,这里是看情况，不一定是root
+chmod 777 ROOT.war
+
+# 需要将指定的war 包拷贝到tomcat 配置的路径。会自动解压到对应的文件夹（ROOT）
+mv ROOT.war /var/lib/tomcat/webapps/
+
+```
