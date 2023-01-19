@@ -112,3 +112,66 @@ chmod 777 ROOT.war
 mv ROOT.war /var/lib/tomcat/webapps/
 
 ```
+#### 2023-01-19: 安装和配置pgsql的服务 （Install and Configure PostgreSQL） rank:338
+目标：
+- 安装pgsql
+- 创建数据库 db8
+- 创建用户 tim,并该用户赋予对db8的所有全新啊
+- 使用md5校验密码  
+
+这又是一个不太熟悉的操作，开发中多时候都是直接使用docker,然后权限的配置，就会使用GUI来操作,所以还是参考了别人的操作
+```shell
+# 先要安装pgsql，包括客户端和服务端
+yum install postgresql-server postgresql-contrib -y
+# 需要先对数据库做初始化后，才能正常启动，这一步会创建 /var/lib/pgsql 文件夹以及对应对默认配置
+postgresql-setup initdb
+# 安装完成后需要启动
+systemctl start postgresql && systemctl enable postgresql && systemctl status postgresql
+# pgsql 默认用户为 postgres,所以先切换过去
+su - postgres
+# 之后启动客户端命令，景区pgsql的命令行输入模式
+pgsql
+# 创建名称为kodekloud_8的数据库
+create database kodekloud_8;
+# 创建用户 kodekloud_gem,并指定密码
+create user kodekloud_gem with ENCRYPTED PASSWORD 'YchZHRcLkL'; 
+# 用户和数据库之间的权限处理，赋予所有权限
+grant all privileges on database kodekloud_8 to "kodekloud_gem";
+# 然后退出命令行，并且切回到root 
+\q
+exit
+#尝试直接连接，会发现报错，因为我们密码是经过处理的
+psql -U kodekloud_tim -d kodekloud_db8 -h 127.0.0.1 -W
+# 所以编辑 /var/lib/pgsql/data/pg_hba.conf
+# 在最后部分，修改 IPv4 和IPv6 下host 对应的加密反思为 md5,也就是最后一列的属性
+# 重启pgsql的服务
+systectl restart postgresql
+```
+个人感觉这里边的其实要了解的东西还是很多的，但我又并非是dba，所以一边就停留在有限但了解层面
+
+
+#### 2023-01-20: 安装IPtables并进行配置 （IPtables Installation And Configuration）rank:290
+目标：
+- 安装iptables 防火墙应用
+- 配置端口 3002 只允许负载均衡服务器访问
+- 配置端口 3002 不允许外网访问
+- 配置必须持久化，服务器重启后依然有效
+
+iptables 是有一点点熟悉但，之前在学习linux基础知识时候有使用到，工作中也有用到
+```shell
+# 安装
+yum install iptables-services  -y 
+# 然后是启动三连
+systemctl start iptables && systemctl enable iptables && systemctl status iptables
+
+# 开始配置
+# 这里有特别需要注意但地方，我是用 -I 的参数，也就是插入到 INPUT表的最前面
+# iptables 的匹配规则是从上到下，一旦满足，就不在继续使用后边的规则，所以要注意添加的顺序问题
+# INPUT、 DROP是表名称，大小写敏感
+iptables -I INPUT -p tcp --dport 3003 -j DROP
+iptables -I INPUT -p tcp --dport 3003 -s 172.16.238.14 -j ACCEPT
+
+# 最后需要保持持久化
+service iptables save 
+```
+总结：iptables 平时用的也不多，云服务器一般都在控制台那一层就处理了。另外，运维说，一般也不用iptables作为防火墙，会用fire-wall 这样的服务器，类似于ubuntu里的ufw吧，使用上可能是更加方便了。iptables的用去还是挺大的，在k8s的网络那一层，用的就挺多的。但.....这可是个大话题😳
