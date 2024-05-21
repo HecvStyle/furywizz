@@ -1,5 +1,4 @@
 /site/
 .hugo_build.lock
-themes/PaperMod/
 content/.DS_Store
 .DS_Store
