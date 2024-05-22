@@ -1,0 +1,15 @@
+name: Master branch push
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  post_request:
+    name: deploy cf pages
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run curl command
+      run: |
+        curl -i -L -X POST https://httpbin.org/post
