@@ -1,5 +1,5 @@
-baseurl = "https://www.Geminihub.top"
-title = "Gemini Blog"
+baseurl = "https://blog.wake66.icu"
+title = "Wake Blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
