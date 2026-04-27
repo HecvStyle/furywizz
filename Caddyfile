@@ -1,8 +1,0 @@
-www.geminihub.top {
-  file_server
-  root * /usr/share/caddy
-  handle_errors {
-    rewrite * /404.html
-    file_server
-  }
-}

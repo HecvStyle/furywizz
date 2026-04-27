@@ -1,0 +1,44 @@
+baseURL = 'https://blog.wake66.shop'
+languageCode = 'zh-cn'
+title = '我的学习笔记'
+theme = 'PaperMod'
+
+[pagination]
+disableAliases = false
+pagerSize = 5
+
+# 输出格式，为搜索功能启用 JSON
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  homeInfoParams = { Title = "Hi there 👋", Content = "欢迎来到我的学习博客，记录技术成长与思考。" }
+  socialIcons = []
+  # 启用归档页面
+  ShowArchive = true
+  # 启用标签页面（如果未默认启用）
+  ShowTags = true
+
+# 主菜单：文章、归档、搜索、标签、关于（按权重排序）
+[[menu.main]]
+  name = "文章"
+  url = "/posts/"
+  weight = 1
+
+[[menu.main]]
+  name = "搜索"
+  url = "/search/"
+  weight = 2
+
+[[menu.main]]
+  name = "标签"
+  url = "/tags/"
+  weight =3
+
+[[menu.main]]
+  name = "关于"
+  url = "/about/"
+  weight = 4
+
+[markup.goldmark.renderer]
+  unsafe = true
